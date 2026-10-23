@@ -4,14 +4,12 @@ import { ToolCard } from '../components/ToolCard';
 import { TOOLS_LIST } from '../data/toolsData';
 import { ToolCategory } from '../types';
 import { shareContent } from '../utils/shareTool';
-import { useAdminConfig } from '../context/AdminConfigContext';
 
 interface ToolsPageProps {
   onSelectTool: (slug: string) => void;
 }
 
 export const ToolsPage: React.FC<ToolsPageProps> = ({ onSelectTool }) => {
-  const { activeTools } = useAdminConfig();
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [search, setSearch] = useState<string>('');
   const [toolkitCopied, setToolkitCopied] = useState(false);
@@ -26,7 +24,7 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ onSelectTool }) => {
     const url = `${window.location.origin}/tools`;
     const result = await shareContent({
       title: 'ProfitCalci - Business Toolkit for Indian Sellers',
-      text: 'Explore 20+ free business calculators for GST, Meesho, Amazon, Flipkart profit & invoices on ProfitCalci:',
+      text: 'Explore free business calculators for GST, Meesho, Amazon, Flipkart profit & invoices on ProfitCalci:',
       url,
     });
 
@@ -44,10 +42,9 @@ export const ToolsPage: React.FC<ToolsPageProps> = ({ onSelectTool }) => {
     { id: 'calculators', label: 'Calculators' },
     { id: 'ecommerce', label: 'E-commerce' },
     { id: 'invoicing', label: 'Invoicing & Retail' },
-    { id: 'ai-tools', label: 'AI & Copywriting' },
   ];
 
-  const filtered = activeTools.filter((tool) => {
+  const filtered = TOOLS_LIST.filter((tool) => {
     const matchesCategory = selectedCategory === 'all' || tool.category === selectedCategory;
     const matchesSearch =
       tool.name.toLowerCase().includes(search.toLowerCase()) ||

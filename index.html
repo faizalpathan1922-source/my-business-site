@@ -32,7 +32,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-    <!-- Schema.org Structured Data for Google AdSense & Search Engines -->
+    <!-- Schema.org Structured Data with Google Sitelinks Searchbox & SiteNavigationElement -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -42,16 +42,67 @@
           "@id": "https://profitcalci.in/#website",
           "url": "https://profitcalci.in/",
           "name": "ProfitCalci",
-          "description": "Free Business Calculators and Tools for Indian Sellers and Small Businesses",
+          "alternateName": "ProfitCalci India",
+          "description": "Free GST Invoicing, Profit Margin & Marketplace Calculators for Indian E-Commerce Sellers",
           "inLanguage": "en-IN",
           "potentialAction": {
             "@type": "SearchAction",
             "target": {
               "@type": "EntryPoint",
-              "urlTemplate": "https://profitcalci.in/?q={search_term_string}"
+              "urlTemplate": "https://profitcalci.in/tools?q={search_term_string}"
             },
             "query-input": "required name=search_term_string"
           }
+        },
+        {
+          "@type": "ItemList",
+          "@id": "https://profitcalci.in/#sitelinks",
+          "name": "Popular Business Calculators & Tools - ProfitCalci",
+          "description": "Key business utilities for Indian sellers and retail shopkeepers",
+          "itemListElement": [
+            {
+              "@type": "SiteNavigationElement",
+              "position": 1,
+              "name": "Free GST Invoice Generator",
+              "description": "Generate professional Indian GST tax invoices with HSN codes, state tax splits, UPI QR code, and instant A4 PDF download.",
+              "url": "https://profitcalci.in/tool/invoice-generator"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 2,
+              "name": "GST Calculator India",
+              "description": "Calculate GST inclusive & exclusive amounts, CGST, SGST, IGST split, and custom tax slabs.",
+              "url": "https://profitcalci.in/tool/gst-calculator"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 3,
+              "name": "Marketplace Profit Calculator",
+              "description": "Calculate true net bank payout and in-hand profit after Meesho, Amazon India & Flipkart commission fees and RTO loss.",
+              "url": "https://profitcalci.in/tool/marketplace-profit-calculator"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 4,
+              "name": "Shopify Profit Calculator",
+              "description": "Calculate D2C store profitability factoring in Meta ad CAC, Razorpay PG fees, shipping, and COD returns.",
+              "url": "https://profitcalci.in/tool/shopify-calculator"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 5,
+              "name": "Selling Price Calculator",
+              "description": "Reverse calculate ideal selling price based on cost price, courier fees, and desired profit margin %.",
+              "url": "https://profitcalci.in/tool/selling-price-calculator"
+            },
+            {
+              "@type": "SiteNavigationElement",
+              "position": 6,
+              "name": "HSN Code & GST Rate Finder",
+              "description": "Quickly search 4-digit and 6-digit HSN/SAC codes and tax slabs for popular e-commerce products.",
+              "url": "https://profitcalci.in/tool/hsn-finder"
+            }
+          ]
         },
         {
           "@type": "SoftwareApplication",
@@ -70,6 +121,7 @@
           "@id": "https://profitcalci.in/#organization",
           "name": "ProfitCalci",
           "url": "https://profitcalci.in/",
+          "logo": "https://profitcalci.in/logo.png",
           "description": "ProfitCalci is a free business calculator and tools platform designed for Indian sellers, entrepreneurs, retailers and small businesses."
         }
       ]

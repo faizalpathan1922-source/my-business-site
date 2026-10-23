@@ -5,6 +5,7 @@ import { INDIAN_STATES } from '../../data/statesData';
 import { HSN_DATABASE } from '../../data/hsnData';
 import { InvoiceData, InvoiceItem } from '../../types';
 import { AdSenseBanner } from '../AdSenseBanner';
+import { AffiliateCard } from '../AffiliateCard';
 
 const INITIAL_INVOICE: InvoiceData = {
   invoiceNumber: '',
@@ -569,6 +570,15 @@ export const InvoiceGenerator: React.FC = () => {
                 />
               </div>
             </div>
+
+            {/* Contextual Razorpay Integration */}
+            <div className="mt-4 pt-3 border-t border-slate-100">
+              <AffiliateCard
+                partnerId="razorpay"
+                compact
+                contextText="Want to auto-generate payment links & accept credit cards on invoices? Collect customer payments with Razorpay."
+              />
+            </div>
           </div>
         </div>
       )}
@@ -820,6 +830,27 @@ export const InvoiceGenerator: React.FC = () => {
               <strong className="text-slate-900 block mb-0.5">4. Place of Supply & Tax Segregation</strong>
               Explicit declaration of Place of Supply and separate columns for CGST, SGST, or IGST amounts.
             </div>
+          </div>
+        </div>
+
+        {/* Invoice Logistics & Payment Partner Integrations */}
+        <div className="pt-4 border-t border-slate-100 space-y-4">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
+              E-Commerce & Billing Recommendations
+            </span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <AffiliateCard
+              partnerId="shiprocket"
+              compact
+              contextText="Need to dispatch this order? Ship across 24,000+ pincodes starting at ₹20/500g with automated AWB generation."
+            />
+            <AffiliateCard
+              partnerId="razorpay"
+              compact
+              contextText="Accept online payment for this bill via UPI, Debit/Credit Card, or Netbanking with instant settlement."
+            />
           </div>
         </div>
       </div>

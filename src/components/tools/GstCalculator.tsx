@@ -3,6 +3,7 @@ import { Calculator, Copy, Check, ArrowRightLeft, Printer, RefreshCw, Info, Book
 import { formatINR, parseSafeNumber, parsePositiveNumber } from '../../utils/formatters';
 import { useCurrency } from '../../context/CurrencyContext';
 import { AdSenseBanner } from '../AdSenseBanner';
+import { printCalculationAsPdf } from '../../utils/printPdf';
 
 const PRESET_SLABS = [
   { label: '0% (Exempt)', value: 0 },
@@ -122,11 +123,12 @@ Calculated via ProfitCalci: https://profitcalci.in/tool/gst-calculator`;
             <span>Share on WhatsApp</span>
           </a>
           <button
-            onClick={handlePrint}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-xs"
+            onClick={() => printCalculationAsPdf('gst-tax-calculation')}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-xs cursor-pointer"
+            title="Print or Save Calculation Summary as PDF"
           >
-            <Printer className="w-4 h-4" />
-            <span className="hidden sm:inline">Print Receipt</span>
+            <Printer className="w-4 h-4 text-emerald-600" />
+            <span>Print / Save PDF</span>
           </button>
         </div>
       </div>

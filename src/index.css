@@ -203,34 +203,183 @@ button:not(:disabled):active,
 }
 
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm;
+  }
+
+  *, *:before, *:after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
   html, body {
     background: #ffffff !important;
     color: #0f172a !important;
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    font-size: 11pt !important;
+    line-height: 1.4 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 
-  .no-print, header, footer, nav, [data-ad-slot] {
+  /* 1. Hide Global Chrome & Distractions */
+  .no-print,
+  header,
+  footer,
+  nav,
+  aside,
+  [data-ad-slot],
+  iframe,
+  .cookie-banner,
+  #profitcalci-cookie-banner,
+  button,
+  a[href^="http"],
+  .theme-toggle,
+  .currency-toggle {
     display: none !important;
   }
 
-  .print-only {
+  /* 2. Hide Input Fields, Form Controls, Presets & Labels in Calculator Pages */
+  /* (Preserves invoice-paper inputs/text for invoices and receipts) */
+  body:not(.printing-invoice) input,
+  body:not(.printing-invoice) select,
+  body:not(.printing-invoice) textarea,
+  body:not(.printing-invoice) .lg\:col-span-7,
+  body:not(.printing-invoice) label,
+  body:not(.printing-invoice) .input-group,
+  body:not(.printing-invoice) .calculator-inputs,
+  body:not(.printing-invoice) [class*="col-span-7"],
+  body:not(.printing-invoice) .border-t.border-slate-100:has(input),
+  body:not(.printing-invoice) .border-t.border-slate-100:has(select) {
+    display: none !important;
+  }
+
+  /* 3. Expand Results Column to Full Width on Single Page */
+  body:not(.printing-invoice) .lg\:col-span-5,
+  body:not(.printing-invoice) [class*="col-span-5"],
+  body:not(.printing-invoice) .calculator-results {
+    width: 100% !important;
+    max-width: 100% !important;
+    grid-column: 1 / -1 !important;
+    display: block !important;
+    margin: 0 auto !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Flatten CSS grid containers to single-column full-width flow */
+  body:not(.printing-invoice) .grid {
     display: block !important;
   }
 
-  /* Force white background and readable dark typography for all containers when printing */
+  /* 4. Single-Page Formatting Guarantee */
+  main,
+  #root,
+  .max-w-4xl,
+  .max-w-7xl {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Prevent page breaks inside cards */
+  .rounded-2xl,
+  .rounded-3xl,
+  .p-5,
+  .p-6,
+  .card {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    margin-bottom: 12pt !important;
+  }
+
+  /* 5. Crisp Print Colors for High-Contrast Laser / Inkjet */
   .dark html, .dark body, .dark #root, .dark main, .dark div {
     background-color: #ffffff !important;
     color: #0f172a !important;
     border-color: #e2e8f0 !important;
   }
 
+  /* Highlighting primary result card in print */
+  .bg-gradient-to-br,
+  .bg-slate-900,
+  .bg-emerald-950,
+  .bg-slate-800 {
+    background: #064e3b !important; /* Rich readable emerald tone */
+    color: #ffffff !important;
+    border: 1pt solid #047857 !important;
+    padding: 16pt !important;
+    border-radius: 8pt !important;
+  }
+
+  .bg-gradient-to-br *,
+  .bg-slate-900 *,
+  .bg-emerald-950 * {
+    color: #ffffff !important;
+  }
+
+  .text-emerald-400,
+  .text-emerald-300 {
+    color: #a7f3d0 !important;
+  }
+
+  /* Clean table & card borders for print */
+  .bg-white {
+    background-color: #ffffff !important;
+    border: 1pt solid #cbd5e1 !important;
+    border-radius: 8pt !important;
+  }
+
+  .border-b {
+    border-bottom: 0.5pt solid #e2e8f0 !important;
+  }
+
+  /* 6. Invoice / Receipt Document Printing Support */
   .invoice-paper {
+    display: block !important;
     box-shadow: none !important;
     border: none !important;
     margin: 0 !important;
     padding: 0 !important;
     max-width: 100% !important;
     width: 100% !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  .invoice-paper * {
+    display: inherit;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  /* 7. Professional Document Header for Calculation PDF Exports */
+  body:not(.printing-invoice)::before {
+    content: "ProfitCalci.in — Official Business Calculation Summary";
+    display: block;
+    font-size: 13pt;
+    font-weight: 800;
+    color: #065f46;
+    border-bottom: 2pt solid #059669;
+    padding-bottom: 6pt;
+    margin-bottom: 14pt;
+    letter-spacing: -0.02em;
+  }
+
+  body:not(.printing-invoice)::after {
+    content: "Generated via ProfitCalci.in • Confidential Business Record • Validated for Indian Seller Unit Economics";
+    display: block;
+    font-size: 8.5pt;
+    font-weight: 600;
+    color: #64748b;
+    border-top: 1pt solid #cbd5e1;
+    margin-top: 18pt;
+    padding-top: 6pt;
+    text-align: center;
   }
 }
+
+

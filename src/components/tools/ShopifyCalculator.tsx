@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ShoppingBag, Copy, Check, Download, AlertTriangle, ShieldCheck, Info, Share2, Printer, Percent, DollarSign, HelpCircle, Truck, PackageCheck, Target } from 'lucide-react';
 import { formatINR, parsePositiveNumber } from '../../utils/formatters';
 import { AdSenseBanner } from '../AdSenseBanner';
+import { printCalculationAsPdf } from '../../utils/printPdf';
+import { AffiliateCard } from '../AffiliateCard';
 
 interface ShopifyPlan {
   name: string;
@@ -234,11 +236,13 @@ Calculated on ProfitCalci: https://profitcalci.in/tool/shopify-calculator`;
           </a>
           <button
             type="button"
-            onClick={() => window.print()}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-xs cursor-pointer"
+            onClick={() => printCalculationAsPdf('shopify-d2c-profit-analysis')}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-xs cursor-pointer"
+            title="Print or Save Shopify Unit Economics as PDF"
           >
-            <Printer className="w-4 h-4" />
-            <span className="hidden sm:inline">Print</span>
+            <Printer className="w-4 h-4 text-emerald-600" />
+            <span className="hidden sm:inline">Print / Save PDF</span>
+            <span className="sm:hidden">PDF</span>
           </button>
         </div>
       </div>
@@ -635,28 +639,23 @@ Calculated on ProfitCalci: https://profitcalci.in/tool/shopify-calculator`;
       {/* AdSense Placement */}
       <AdSenseBanner slot="9012485721" format="horizontal" />
 
-      {/* Shopify D2C Best Practices Guide */}
-      <div className="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200 shadow-xs space-y-4 text-sm text-slate-700 leading-relaxed no-print">
-        <h2 className="text-xl font-bold text-slate-900">How to Master Shopify D2C Unit Economics in India</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
-            <h3 className="font-bold text-slate-900 mb-1">1. Keep CAC under 30%</h3>
-            <p className="text-xs text-slate-600">
-              For healthy profitability, aim for your Customer Acquisition Cost (CAC) on Meta/Instagram to stay under 30% of average order value (AOV).
-            </p>
-          </div>
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
-            <h3 className="font-bold text-slate-900 mb-1">2. Incentivize Prepaid</h3>
-            <p className="text-xs text-slate-600">
-              Offer a ₹50-₹100 discount or a free gift for prepaid payments via UPI/cards to slash RTO returns and save ₹30+ COD handling fees.
-            </p>
-          </div>
-          <div className="p-4 bg-slate-50 rounded-xl border border-slate-200">
-            <h3 className="font-bold text-slate-900 mb-1">3. Bundle to Increase AOV</h3>
-            <p className="text-xs text-slate-600">
-              Courier freight (₹60-80) is nearly the same for 1 item or 2 items. Selling packs of 2 or 3 increases contribution margin dramatically.
-            </p>
-          </div>
+      {/* Shopify & Payment Partner Recommendations */}
+      <div className="space-y-4 no-print">
+        <AffiliateCard
+          partnerId="shopify"
+          contextText="Ready to build your brand? Start on Shopify India for just ₹20/month with zero marketplace commissions."
+        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <AffiliateCard
+            partnerId="razorpay"
+            compact
+            contextText="Collect UPI & card payments on your Shopify store at 2% with 18% GST input credit."
+          />
+          <AffiliateCard
+            partnerId="shiprocket"
+            compact
+            contextText="Ship Shopify orders across India from ₹20/500g with automated COD fraud verification."
+          />
         </div>
       </div>
     </div>

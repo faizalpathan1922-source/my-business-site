@@ -39,15 +39,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           {/* Column 1: Core Tools */}
           <div>
             <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">
-              Tools & Calculators
+              Featured Tools
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
                 <button
-                  onClick={() => handleNav('/tools')}
-                  className="hover:text-emerald-400 transition-colors"
+                  onClick={() => handleNav('/tool/invoice-generator')}
+                  className="text-emerald-400 font-bold hover:text-emerald-300 transition-colors flex items-center gap-1.5"
                 >
-                  Tools
+                  <span>GST Invoice Generator</span>
+                  <span className="text-[9px] px-1 py-0.2 rounded bg-emerald-950 text-emerald-300 border border-emerald-800 uppercase">
+                    Popular
+                  </span>
                 </button>
               </li>
               <li>
@@ -55,15 +58,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('/tool/gst-calculator')}
                   className="hover:text-emerald-400 transition-colors"
                 >
-                  Calculators
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('/tool/whatsapp-ad-generator')}
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  AI Tools
+                  GST Calculator
                 </button>
               </li>
               <li>
@@ -71,56 +66,81 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   onClick={() => handleNav('/tool/profit-calculator')}
                   className="hover:text-emerald-400 transition-colors"
                 >
-                  E-commerce
+                  Marketplace Profit
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('/tool/shopify-calculator')}
+                  className="hover:text-emerald-400 transition-colors"
+                >
+                  Shopify D2C Calculator
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('/tool/selling-price-calculator')}
+                  className="hover:text-emerald-400 transition-colors"
+                >
+                  Selling Price Calculator
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() => handleNav('/tool/hsn-finder')}
+                  className="hover:text-emerald-400 transition-colors"
+                >
+                  HSN / SAC Code Finder
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Column 2: Platform & Pricing */}
+          {/* Column 2: Growth Partners */}
           <div>
             <h4 className="text-xs font-bold text-slate-200 uppercase tracking-wider mb-4">
-              Navigation
+              Seller Partners
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li>
-                <button
-                  onClick={() => handleNav('/resources')}
-                  className="hover:text-emerald-400 transition-colors"
+                <a
+                  href="https://razorpay.com/?utm_source=profitcalci&utm_medium=affiliate"
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="hover:text-emerald-400 transition-colors flex items-center justify-between group"
                 >
-                  Resources
-                </button>
+                  <span>Razorpay Payments</span>
+                  <span className="text-[10px] text-slate-500 group-hover:text-emerald-400">↗</span>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/pricing')}
-                  className="hover:text-emerald-400 transition-colors"
+                <a
+                  href="https://www.shiprocket.in/?utm_source=profitcalci&utm_medium=affiliate"
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="hover:text-emerald-400 transition-colors flex items-center justify-between group"
                 >
-                  Pricing
-                </button>
+                  <span>Shiprocket Logistics</span>
+                  <span className="text-[10px] text-slate-500 group-hover:text-emerald-400">↗</span>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handleNav('/about')}
-                  className="hover:text-emerald-400 transition-colors"
+                <a
+                  href="https://www.shopify.in/?ref=profitcalci&utm_source=profitcalci&utm_medium=affiliate"
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="hover:text-emerald-400 transition-colors flex items-center justify-between group"
                 >
-                  About
-                </button>
+                  <span>Shopify Online Store</span>
+                  <span className="text-[10px] text-slate-500 group-hover:text-emerald-400">↗</span>
+                </a>
               </li>
-              <li>
+              <li className="pt-2 border-t border-slate-900">
                 <button
-                  onClick={() => handleNav('/contact')}
-                  className="hover:text-emerald-400 transition-colors"
+                  onClick={() => handleNav('/tools')}
+                  className="text-emerald-400 hover:underline"
                 >
-                  Contact Us
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleNav('/faq')}
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  FAQ
+                  View All Tools →
                 </button>
               </li>
             </ul>
@@ -162,14 +182,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   className="hover:text-emerald-400 transition-colors"
                 >
                   Cookie Policy
-                </button>
-              </li>
-              <li className="pt-2 border-t border-slate-900">
-                <button
-                  onClick={() => handleNav('/admin')}
-                  className="inline-flex items-center gap-1.5 text-slate-500 hover:text-emerald-400 transition-colors cursor-pointer text-[11px]"
-                >
-                  <span>Admin Portal</span>
                 </button>
               </li>
             </ul>

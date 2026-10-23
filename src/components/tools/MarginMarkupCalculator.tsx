@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Percent, ArrowRightLeft, Copy, Check, Info } from 'lucide-react';
+import { Percent, ArrowRightLeft, Copy, Check, Info, Printer } from 'lucide-react';
 import { formatINR, parseSafeNumber } from '../../utils/formatters';
+import { printCalculationAsPdf } from '../../utils/printPdf';
 
 export const MarginMarkupCalculator: React.FC = () => {
   const [cost, setCost] = useState<number>(0);
@@ -49,13 +50,23 @@ Calculated via ProfitCalci (profitcalci.in)`;
           </p>
         </div>
 
-        <button
-          onClick={handleCopy}
-          className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-xs self-start sm:self-auto"
-        >
-          {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
-          <span>{copied ? 'Copied' : 'Copy Result'}</span>
-        </button>
+        <div className="flex items-center gap-2 no-print self-start sm:self-auto">
+          <button
+            onClick={handleCopy}
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-xs"
+          >
+            {copied ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+            <span>{copied ? 'Copied' : 'Copy Result'}</span>
+          </button>
+          <button
+            onClick={() => printCalculationAsPdf('margin-markup-calculation')}
+            className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-slate-800 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-xs cursor-pointer"
+            title="Print or Save Margin Calculation as PDF"
+          >
+            <Printer className="w-4 h-4 text-emerald-600" />
+            <span>Print / Save PDF</span>
+          </button>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6">

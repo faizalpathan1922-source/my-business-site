@@ -18,28 +18,13 @@ import { GstCalculator } from './components/tools/GstCalculator';
 import { ProfitCalculator } from './components/tools/ProfitCalculator';
 import { SellingPriceCalculator } from './components/tools/SellingPriceCalculator';
 import { InvoiceGenerator } from './components/tools/InvoiceGenerator';
-import { WhatsAppAdGenerator } from './components/tools/WhatsAppAdGenerator';
 import { MarketplaceComparison } from './components/tools/MarketplaceComparison';
 import { HsnFinder } from './components/tools/HsnFinder';
-import { QrBarcodeGenerator } from './components/tools/QrBarcodeGenerator';
 import { MarginMarkupCalculator } from './components/tools/MarginMarkupCalculator';
-import { ProductDescriptionGenerator } from './components/tools/ProductDescriptionGenerator';
-import { DiscountCalculator } from './components/tools/DiscountCalculator';
-import { BreakEvenCalculator } from './components/tools/BreakEvenCalculator';
 import { MarketplaceProfitCalculator } from './components/tools/MarketplaceProfitCalculator';
-import { CodProfitCalculator } from './components/tools/CodProfitCalculator';
-import { ReturnLossCalculator } from './components/tools/ReturnLossCalculator';
 import { QuotationGenerator } from './components/tools/QuotationGenerator';
 import { ReceiptGenerator } from './components/tools/ReceiptGenerator';
-import { BulkProfitCalculator } from './components/tools/BulkProfitCalculator';
-import { ImageToPdfConverter } from './components/tools/ImageToPdfConverter';
-import { InstagramCaptionGenerator } from './components/tools/InstagramCaptionGenerator';
-import { ProductTitleGenerator } from './components/tools/ProductTitleGenerator';
-import { SocialMediaAdGenerator } from './components/tools/SocialMediaAdGenerator';
 import { ShopifyCalculator } from './components/tools/ShopifyCalculator';
-import { AdminPage } from './pages/AdminPage';
-import { DynamicCalculatorRenderer } from './components/DynamicCalculatorRenderer';
-import { useAdminConfig } from './context/AdminConfigContext';
 import { ChevronRight, Home, Calculator, TrendingUp, FileText, MessageSquareShare, Share2, CheckCircle2 } from 'lucide-react';
 import { TOOLS_LIST } from './data/toolsData';
 import { recordRecentlyUsedTool } from './utils/recentTools';
@@ -47,7 +32,6 @@ import { shareContent } from './utils/shareTool';
 import { getPageMetadata, updateDynamicStructuredData } from './utils/seoConfig';
 
 export default function App() {
-  const { allManagedTools, activeTools } = useAdminConfig();
   const [currentPath, setCurrentPath] = useState<string>(() => {
     return window.location.pathname || '/';
   });
@@ -142,7 +126,7 @@ export default function App() {
     // 1. Tool routes
     if (currentPath.startsWith('/tool/')) {
       const slug = currentPath.replace('/tool/', '');
-      const toolMeta = allManagedTools.find((t) => t.slug === slug) || TOOLS_LIST.find((t) => t.slug === slug);
+      const toolMeta = TOOLS_LIST.find((t) => t.slug === slug);
 
       let ToolComponent = null;
       switch (slug) {
@@ -155,20 +139,8 @@ export default function App() {
         case 'selling-price-calculator':
           ToolComponent = <SellingPriceCalculator />;
           break;
-        case 'discount-calculator':
-          ToolComponent = <DiscountCalculator />;
-          break;
-        case 'break-even-calculator':
-          ToolComponent = <BreakEvenCalculator />;
-          break;
         case 'marketplace-profit-calculator':
           ToolComponent = <MarketplaceProfitCalculator />;
-          break;
-        case 'cod-profit-calculator':
-          ToolComponent = <CodProfitCalculator />;
-          break;
-        case 'return-loss-calculator':
-          ToolComponent = <ReturnLossCalculator />;
           break;
         case 'invoice-generator':
           ToolComponent = <InvoiceGenerator />;
@@ -178,32 +150,6 @@ export default function App() {
           break;
         case 'receipt-generator':
           ToolComponent = <ReceiptGenerator />;
-          break;
-        case 'bulk-profit-calculator':
-          ToolComponent = <BulkProfitCalculator />;
-          break;
-        case 'qr-code-generator':
-        case 'qr-barcode-generator':
-          ToolComponent = <QrBarcodeGenerator />;
-          break;
-        case 'image-to-pdf':
-          ToolComponent = <ImageToPdfConverter />;
-          break;
-        case 'whatsapp-ad-generator':
-          ToolComponent = <WhatsAppAdGenerator />;
-          break;
-        case 'instagram-caption-generator':
-          ToolComponent = <InstagramCaptionGenerator />;
-          break;
-        case 'product-description':
-        case 'product-description-generator':
-          ToolComponent = <ProductDescriptionGenerator />;
-          break;
-        case 'product-title-generator':
-          ToolComponent = <ProductTitleGenerator />;
-          break;
-        case 'social-media-ad-generator':
-          ToolComponent = <SocialMediaAdGenerator />;
           break;
         case 'marketplace-comparison':
           ToolComponent = <MarketplaceComparison />;
@@ -217,27 +163,19 @@ export default function App() {
         case 'shopify-calculator':
           ToolComponent = <ShopifyCalculator />;
           break;
-        default: {
-          // Check if this is a custom calculator created via the Admin form builder
-          const customTool = allManagedTools.find((t) => t.slug === slug);
-          if (customTool && customTool.isCustomCreated) {
-            ToolComponent = <DynamicCalculatorRenderer tool={customTool} />;
-          } else {
-            ToolComponent = (
-              <div className="bg-white p-12 text-center rounded-3xl border border-slate-200">
-                <h2 className="text-xl font-bold text-slate-800">Tool Not Found</h2>
-                <p className="text-xs text-slate-500 mt-2">The requested calculator could not be found or has been unpublished.</p>
-                <button
-                  onClick={() => navigateTo('/tools')}
-                  className="mt-4 px-4 py-2 bg-emerald-600 text-white font-bold text-xs rounded-xl"
-                >
-                  Browse All Tools
-                </button>
-              </div>
-            );
-          }
-          break;
-        }
+        default:
+          ToolComponent = (
+            <div className="bg-white p-12 text-center rounded-3xl border border-slate-200">
+              <h2 className="text-xl font-bold text-slate-800">Tool Not Found</h2>
+              <p className="text-xs text-slate-500 mt-2">The requested calculator could not be found.</p>
+              <button
+                onClick={() => navigateTo('/tools')}
+                className="mt-4 px-4 py-2 bg-emerald-600 text-white font-bold text-xs rounded-xl"
+              >
+                Browse All Tools
+              </button>
+            </div>
+          );
       }
 
       return (
@@ -320,8 +258,6 @@ export default function App() {
         return <PricingPage onSelectTool={handleSelectTool} />;
       case '/resources':
         return <ResourcesPage onSelectTool={handleSelectTool} />;
-      case '/admin':
-        return <AdminPage onNavigate={navigateTo} />;
       case '/':
       default:
         return <HomePage onSelectTool={handleSelectTool} onNavigate={navigateTo} />;

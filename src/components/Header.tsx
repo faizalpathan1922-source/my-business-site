@@ -18,7 +18,6 @@ import { PWAInstallButton } from './PWAInstallButton';
 import { Logo } from './Logo';
 import { ThemeToggle } from './ThemeToggle';
 import { CurrencyToggle } from './CurrencyToggle';
-import { useAdminConfig } from '../context/AdminConfigContext';
 
 interface HeaderProps {
   currentPath: string;
@@ -27,7 +26,6 @@ interface HeaderProps {
 }
 
 export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenSearch }) => {
-  const { activeTools } = useAdminConfig();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
 
@@ -66,6 +64,22 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenS
               Home
             </button>
 
+            {/* Direct Flagship GST Invoice Generator Link */}
+            <button
+              onClick={() => handleNav('/tool/invoice-generator')}
+              className={`px-3 py-2 rounded-lg text-sm font-bold transition-all flex items-center gap-1.5 ${
+                currentPath === '/tool/invoice-generator'
+                  ? 'text-emerald-700 dark:text-emerald-300 bg-emerald-100 dark:bg-emerald-950/90 ring-1 ring-emerald-500/30'
+                  : 'text-emerald-700 dark:text-emerald-400 bg-emerald-50/80 dark:bg-emerald-950/40 hover:bg-emerald-100 dark:hover:bg-emerald-950 border border-emerald-200/60 dark:border-emerald-800/60'
+              }`}
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>GST Invoice</span>
+              <span className="text-[10px] px-1.5 py-0.2 rounded bg-emerald-600 text-white font-extrabold uppercase tracking-wider">
+                Free
+              </span>
+            </button>
+
             {/* Tools Dropdown */}
             <div className="relative">
               <button
@@ -90,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenS
                     Core Business Tools
                   </div>
                   <div className="space-y-0.5">
-                    {activeTools.slice(0, 5).map((tool) => (
+                    {TOOLS_LIST.slice(0, 5).map((tool) => (
                       <button
                         key={tool.id}
                         onClick={() => handleNav(`/tool/${tool.slug}`)}
@@ -117,7 +131,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, onNavigate, onOpenS
                       onClick={() => handleNav('/tools')}
                       className="w-full text-center py-2 text-xs font-bold text-emerald-700 dark:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 rounded-lg transition-colors cursor-pointer"
                     >
-                      View All {activeTools.length} Business Tools →
+                      View All {TOOLS_LIST.length} Business Tools →
                     </button>
                   </div>
                 </div>

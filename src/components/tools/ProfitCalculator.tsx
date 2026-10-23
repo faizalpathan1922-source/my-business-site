@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { TrendingUp, Copy, Check, AlertTriangle, ShieldCheck, DollarSign, Info, RefreshCw, BookOpen, AlertCircle, Share2, Printer, Download } from 'lucide-react';
 import { formatINR, parseSafeNumber, parsePositiveNumber } from '../../utils/formatters';
 import { AdSenseBanner } from '../AdSenseBanner';
+import { printCalculationAsPdf } from '../../utils/printPdf';
+import { AffiliateCard } from '../AffiliateCard';
 
 interface PlatformPreset {
   id: 'general' | 'meesho' | 'amazon' | 'flipkart' | 'shopify' | 'custom';
@@ -275,11 +277,13 @@ Calculated via ProfitCalci: https://profitcalci.in/tool/profit-calculator`;
             <span>Share on WhatsApp</span>
           </a>
           <button
-            onClick={handlePrint}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-xs cursor-pointer"
+            onClick={() => printCalculationAsPdf(`profit-calculation-${selectedPlatform}`)}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-xs cursor-pointer"
+            title="Print or Save Profit Calculation as PDF"
           >
-            <Printer className="w-4 h-4" />
-            <span className="hidden sm:inline">Print</span>
+            <Printer className="w-4 h-4 text-emerald-600" />
+            <span className="hidden sm:inline">Print / Save PDF</span>
+            <span className="sm:hidden">PDF</span>
           </button>
         </div>
       </div>
@@ -702,6 +706,27 @@ Calculated via ProfitCalci: https://profitcalci.in/tool/profit-calculator`;
             <p className="text-emerald-800">
               If your return rate is 20% and courier freight is ₹80, every single delivered item must absorb <strong>₹16</strong> in return overhead to keep your overall business profitable.
             </p>
+          </div>
+        </div>
+
+        {/* Growth Partner Recommendations */}
+        <div className="pt-4 border-t border-slate-100 space-y-4 no-print">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-700">
+              Recommended Logistics & Store Partners
+            </span>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <AffiliateCard
+              partnerId="shiprocket"
+              compact
+              contextText="Slash your courier costs to ₹20/500g and reduce RTO returns by up to 40% with automated WhatsApp confirmation."
+            />
+            <AffiliateCard
+              partnerId="shopify"
+              compact
+              contextText="Tired of 15% marketplace commissions? Launch your independent D2C store on Shopify for ₹20/month."
+            />
           </div>
         </div>
       </div>

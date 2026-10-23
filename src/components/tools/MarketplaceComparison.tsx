@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GitCompare, Copy, Check, ArrowRight, ShieldCheck, Zap, Share2, Printer, Sliders, Info, RotateCcw } from 'lucide-react';
 import { formatINR, parseSafeNumber } from '../../utils/formatters';
+import { printCalculationAsPdf } from '../../utils/printPdf';
 
 interface PlatformFeeSlab {
   referral: number;
@@ -212,11 +213,13 @@ Compare your listing margins: https://profitcalci.in/tool/marketplace-comparison
             <span>Share on WhatsApp</span>
           </a>
           <button
-            onClick={handlePrint}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-xs"
+            onClick={() => printCalculationAsPdf('marketplace-fee-comparison')}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-xs cursor-pointer"
+            title="Print or Save Comparison Table as PDF"
           >
-            <Printer className="w-4 h-4" />
-            <span className="hidden sm:inline">Print</span>
+            <Printer className="w-4 h-4 text-emerald-600" />
+            <span className="hidden sm:inline">Print / Save PDF</span>
+            <span className="sm:hidden">PDF</span>
           </button>
         </div>
       </div>

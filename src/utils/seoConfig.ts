@@ -87,14 +87,6 @@ const TOOL_TITLE_OVERRIDES: Record<string, { title: string; extraKeywords: strin
     title: 'Selling Price Calculator - Target Margin & Markup | ProfitCalci',
     extraKeywords: 'Reverse calculate your target retail selling price from cost price, shipping, overheads, and desired profit margin.',
   },
-  'discount-calculator': {
-    title: 'Discount Calculator - Flat Off & Percentage Savings | ProfitCalci',
-    extraKeywords: 'Compute discounted price, exact money saved, and bulk quantity totals from percentage or flat discounts.',
-  },
-  'break-even-calculator': {
-    title: 'Break-Even Calculator - Units & Revenue Required | ProfitCalci',
-    extraKeywords: 'Calculate break-even units and target turnover to cover fixed operating expenses and variable unit costs.',
-  },
   'marketplace-profit-calculator': {
     title: 'Marketplace Profit Calculator - Meesho, Amazon & Flipkart | ProfitCalci',
     extraKeywords: 'Calculate net seller payouts across Amazon Easy Ship, Flipkart FBF, and Meesho 0% commission models.',
@@ -102,14 +94,6 @@ const TOOL_TITLE_OVERRIDES: Record<string, { title: string; extraKeywords: strin
   'shopify-calculator': {
     title: 'Shopify & D2C Profit Calculator - CAC, ROAS & PG Fees | ProfitCalci',
     extraKeywords: 'Model Shopify D2C store profitability with Meta/Google ad CAC, Razorpay/Cashfree fees, courier shipping, and RTO.',
-  },
-  'cod-profit-calculator': {
-    title: 'COD Profit Calculator - RTO Return Rate & Reverse Freight | ProfitCalci',
-    extraKeywords: 'Analyze true cash-on-delivery profits after courier RTO return rate percentage and reverse logistics freight.',
-  },
-  'return-loss-calculator': {
-    title: 'E-commerce Return Loss Calculator - RTO Financial Drain | ProfitCalci',
-    extraKeywords: 'Quantify monthly money lost to courier freight, packaging wastage, and product damages on customer returns.',
   },
   'invoice-generator': {
     title: 'Free GST Invoice Generator - PDF Download & Print | ProfitCalci',
@@ -122,38 +106,6 @@ const TOOL_TITLE_OVERRIDES: Record<string, { title: string; extraKeywords: strin
   'receipt-generator': {
     title: 'Payment Receipt Generator - Cash & UPI Payment Voucher | ProfitCalci',
     extraKeywords: 'Issue formal cash payment vouchers and transaction receipts with amount in words and authorized sign.',
-  },
-  'bulk-profit-calculator': {
-    title: 'Bulk Profit Calculator - Multi-Product Batch Margins | ProfitCalci',
-    extraKeywords: 'Calculate overall portfolio margins and total profit across multi-product inventory batches and wholesale lots.',
-  },
-  'qr-code-generator': {
-    title: 'Instant QR Code Generator - UPI, URL & WhatsApp QR | ProfitCalci',
-    extraKeywords: 'Generate customizable high-resolution QR codes for UPI payments, website URLs, and WhatsApp chats.',
-  },
-  'image-to-pdf': {
-    title: 'Image to PDF Converter - Convert JPG & PNG to A4 PDF | ProfitCalci',
-    extraKeywords: 'Convert product photos, bills, receipts, and invoices into a high-quality printable A4 PDF document.',
-  },
-  'whatsapp-ad-generator': {
-    title: 'WhatsApp Ad & Broadcast Message Generator | ProfitCalci',
-    extraKeywords: 'Create high-converting WhatsApp promotional messages, festive sale broadcasts, and flash deal copy.',
-  },
-  'instagram-caption-generator': {
-    title: 'Instagram Caption Generator - E-commerce Reels & Posts | ProfitCalci',
-    extraKeywords: 'Create engaging Instagram captions with hooks, emojis, calls to action, and trending Indian hashtags.',
-  },
-  'product-description-generator': {
-    title: 'Amazon & Meesho Product Description Generator | ProfitCalci',
-    extraKeywords: 'Generate SEO bullet points and high-converting product descriptions for Amazon, Flipkart, and Meesho listings.',
-  },
-  'product-title-generator': {
-    title: 'SEO Product Title Generator for Marketplace Listings | ProfitCalci',
-    extraKeywords: 'Create keyword-rich product titles optimized for Amazon, Flipkart, and Meesho search ranking algorithms.',
-  },
-  'social-media-ad-generator': {
-    title: 'Social Media Ad Copy Generator - Facebook & Instagram Ads | ProfitCalci',
-    extraKeywords: 'Generate high CTR ad hooks and compelling promotional copy for Meta ads and Google Shopping.',
   },
   'marketplace-comparison': {
     title: 'Marketplace Comparison Tool - Meesho vs Amazon vs Flipkart | ProfitCalci',

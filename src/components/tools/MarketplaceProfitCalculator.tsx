@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Store, Copy, Check, Info, AlertTriangle, ShieldCheck, RefreshCw, HelpCircle, ExternalLink, Share2, Printer } from 'lucide-react';
 import { formatINR, parsePositiveNumber } from '../../utils/formatters';
 import { AdSenseBanner } from '../AdSenseBanner';
+import { printCalculationAsPdf } from '../../utils/printPdf';
 
 interface MarketplacePreset {
   id: 'meesho' | 'amazon' | 'flipkart' | 'shopify' | 'custom';
@@ -208,11 +209,13 @@ Calculate your payout: https://profitcalci.in/tool/marketplace-profit-calculator
             <span>Share on WhatsApp</span>
           </a>
           <button
-            onClick={handlePrint}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-medium text-slate-700 bg-white border border-slate-300 rounded-lg hover:bg-slate-50 transition-colors shadow-xs"
+            onClick={() => printCalculationAsPdf(`marketplace-payout-${selectedPreset}`)}
+            className="flex items-center gap-1.5 px-3 py-2 text-xs sm:text-sm font-semibold text-slate-800 dark:text-slate-200 bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors shadow-xs cursor-pointer"
+            title="Print or Save Marketplace Payout Breakdown as PDF"
           >
-            <Printer className="w-4 h-4" />
-            <span className="hidden sm:inline">Print</span>
+            <Printer className="w-4 h-4 text-emerald-600" />
+            <span className="hidden sm:inline">Print / Save PDF</span>
+            <span className="sm:hidden">PDF</span>
           </button>
         </div>
       </div>
